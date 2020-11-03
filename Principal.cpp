@@ -1,4 +1,6 @@
 #include <iostream>
+#include <conio.h>
+#include <string.h>
 
 char datos(char usuario[15], char contra[15])                   //Esta parte captura los datos del usuario
 {                                                               //Los cuales son usuario y contraseña
@@ -14,11 +16,14 @@ int main ()
     std:: cout << "BIENVENIDO USUARIO" << '\n';                 //Mensaje de bienvenida al usuario
     std:: cout << "Ingrese sus datos para continuar" << '\n';
     char user[15] = "", contra[15] = "";                            
-    datos(user, contra);
+    datos(user, contra);                                        //Llamada para el subprograma de datos del usuario
     if (user != "JUAN" && contra != "JUANPA")
     {
         std:: cout << "Usuario incorrecto \n";
-        //std:: cout << "Bienvenido JUAN PABLO";
-        
-    }                                         //Llamada para el subprograma de datos del usuario
+    }                                         
+    else
+    {
+        std:: cout << "Bienvenido JUAN PABLO";
+    }
+    system("PAUSE()");
 }
