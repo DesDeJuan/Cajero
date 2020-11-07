@@ -4,7 +4,6 @@
 #include <stdio.h>
 
 //Subprogramas
-
 char datos(char usuario[15], char contra[15])                   //Esta parte captura los datos del usuario
 {                                                               //Los cuales son usuario y contrasenia
     std:: cout << "Ingrese su nombre de usuario" << '\n';
