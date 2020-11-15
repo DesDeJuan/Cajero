@@ -14,11 +14,9 @@ void menu()
 
 void menu_bancos()
 {
-	std::cout << "BANORMA ------------ 6 \n";
-	std::cout << "CARLOSMEX ---------- 7 \n";
-	std::cout << "PABLURBIA ---------- 8 \n";
-	std::cout << "SANTADEKTOR -------- 9 \n";
-	std::cout << "BANEDGAR ------------0 \n";
+	std::cout << "BAN-ORTE ----------------------- 6 \n";
+	std::cout << "VANAMETZ ----------------------- 7 \n";
+	std::cout << "SANTA CLOS...DIGO DER ---------- 8 \n";
 }
 
 int main()															//CUERPO PRINCIPAL DEL PROGRAMA
@@ -26,7 +24,7 @@ int main()															//CUERPO PRINCIPAL DEL PROGRAMA
 	char user[15] = "", nip_actual[4] = "", nip[4] = "";
 	int banco = 0, seleccion = 0, respuesta = 1, attempt = 0;
 	unsigned int numero_cuenta = 0;
-	float retiro = 0, saldo_disp = 0, deposito = 0, transf = 0;
+	double retiro = 0, saldo_disp = 0, deposito = 0, transf = 0;
 	
     std:: cout << "BIENVENIDO A BANACOMER" << '\n';                 //Mensaje de bienvenida al usuario
     std:: cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
@@ -49,12 +47,12 @@ int main()															//CUERPO PRINCIPAL DEL PROGRAMA
             std:: cout << "Bienvenido " << user << '\n';
             break;
         }                                         
-        else if (strcmp(user, "HEKTOR") == 0 && strcmp(nip_actual, "4572") == 0)
+        else if (strcmp(user, "LAURA") == 0 && strcmp(nip_actual, "1234") == 0)
         {
         	std:: cout << "Bienvenido " << user << '\n';
             break;
         }
-        else if (strcmp(user, "NORMA") == 0 && strcmp(nip_actual, "2323") == 0)
+        else if (strcmp(user, "PEDRO") == 0 && strcmp(nip_actual, "2323") == 0)
         {
         	std:: cout << "Bienvenido " << user << '\n';
             break;
@@ -117,11 +115,21 @@ int main()															//CUERPO PRINCIPAL DEL PROGRAMA
 				std:: cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n";
 				std::cout << "Cantidad a retirar \n";
 				std::cin >> retiro;
-				saldo_disp = saldo_disp - retiro;
-				std::cout << "Tu nuevo saldo disponible es: ";
-				std::cout << saldo_disp << '\n';
-				system("PAUSE");
-				break;
+				if (saldo_disp < retiro)
+				{
+					std::cout << "Tu saldo es de: " << saldo_disp << " no cumples con los requisitos para retirar \n";
+					system("PAUSE()");
+					break;
+				}
+				else
+				{
+					saldo_disp = saldo_disp - retiro;
+					std::cout << "Tu nuevo saldo disponible es: ";
+					std::cout << saldo_disp << '\n';
+					system("PAUSE");
+					break;
+				}
+				
 			}
 			
 		case 4:													//DEPOSITOS DE EFECTIVO
@@ -152,7 +160,6 @@ int main()															//CUERPO PRINCIPAL DEL PROGRAMA
 			{
 				std::cout << "Tu saldo es de: " << saldo_disp << " no cumples con los requisitos para retirar \n";
 				system("PAUSE()");
-				break;
 			}
 			else
 			{
@@ -161,71 +168,54 @@ int main()															//CUERPO PRINCIPAL DEL PROGRAMA
 				std::cout << "Coloque cantidad a transferir: ";
 				std::cin >> transf;
 				std::cout << '\n';
-				std::cout << "Ingrese banco destino \n";
-				menu_bancos();
-				std::cin >> banco;
-				std::cout << "Ingrese numero de cuenta destino \n";
-				std::cin >> numero_cuenta;
+				
+				if (saldo_disp < transf)
+				{
+					std::cout << "Tu saldo es de: " << saldo_disp << " no cumples con los requisitos para transferir \n";
+					system("PAUSE()");
+				}
+				else
+				{
+					std::cout << "Ingrese banco destino \n";
+					menu_bancos();
+					std::cin >> banco;
+					std::cout << "Ingrese numero de cuenta destino \n";
+					std::cin >> numero_cuenta;
+					saldo_disp = saldo_disp - transf;
+					
+					if (banco == 6)																	//BANCO BAN-ORTE
+				{
+					std::cout << "Transferencia realizada a: " << numero_cuenta << '\n';
+						std::cout << "Banco que recibe: BAN-ORTE \n";
+						std::cout << "Cantidad transferida: " << transf << '\n';
+						std:: cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n";
+						std::cout << "Saldo restante en tu cuenta: " << saldo_disp << '\n';
+						system("PAUSE()");
+				}
+				else if (banco == 7)
+				{
+					std::cout << "Transferencia realizada a: " << numero_cuenta << '\n';		//BANCO VANAMETZ
+						std::cout << "Banco que recibe: VANAMETZ \n";
+						std::cout << "Cantidad transferida: " << transf << '\n';
+						std:: cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n";
+						std::cout << "Saldo restante en tu cuenta: " << saldo_disp << '\n';
+						system("PAUSE()");
+				}
+				else
+				{
+					std::cout << "Transferencia realizada a: " << numero_cuenta << '\n';		//BANCO SANTA CLOS...DIGO DER
+						std::cout << "Banco que recibe: SANTA CLOS...DIGO DER \n";
+						std::cout << "Cantidad transferida: " << transf << '\n';
+						std:: cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n";
+						std::cout << "Saldo restante en tu cuenta: " << saldo_disp << '\n';
+						system("PAUSE()");
+				}
+				}
+				break;
 			
-				saldo_disp = saldo_disp - transf;
-			
-				switch (banco)
-					case 6:											//BANCO BANORMA
-					
-						std::cout << "Transferencia realizada a: " << numero_cuenta << '\n';
-						std::cout << "Banco que recibe: BANORMA \n";
-						std::cout << "Cantidad transferida: " << transf << '\n';
-						std:: cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n";
-						std::cout << "Saldo restante en tu cuenta: " << saldo_disp << '\n';
-						system("PAUSE()");
-						break;
 				
-					case 7:											//BANCO CARLOSMEX
-					
-						std::cout << "Transferencia realizada a: " << numero_cuenta << '\n';
-						std::cout << "Banco que recibe: CARLOSMEX \n";
-						std::cout << "Cantidad transferida: " << transf << '\n';
-						std:: cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n";
-						std::cout << "Saldo restante en tu cuenta: " << saldo_disp << '\n';
-						system("PAUSE()");
-						break;
-				
-					case 8:											//BANCO PABLURBIA
-					
-						std::cout << "Transferencia realizada a: " << numero_cuenta << '\n';
-						std::cout << "Banco que recibe: PABLURBIA \n";
-						std::cout << "Cantidad transferida: " << transf << '\n';
-						std:: cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n";
-						std::cout << "Saldo restante en tu cuenta: " << saldo_disp << '\n';
-						system("PAUSE()");
-						break;
-				
-					case 9:											//BANCO SANTANDEKTOR
-					
-						std::cout << "Transferencia realizada a: " << numero_cuenta << '\n';
-						std::cout << "Banco que recibe: SANTANDEKTOR \n";
-						std::cout << "Cantidad transferida: " << transf << '\n';
-						std:: cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n";
-						std::cout << "Saldo restante en tu cuenta: " << saldo_disp << '\n';
-						system("PAUSE()");
-						break;
-				
-					case 0:											//BANCO BANEDGAR
-					
-						std::cout << "Transferencia realizada a: " << numero_cuenta << '\n';
-						std::cout << "Banco que recibe: BANEDGAR \n";
-						std::cout << "Cantidad transferida: " << transf << '\n';
-						std:: cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n";
-						std::cout << "Saldo restante en tu cuenta: " << saldo_disp << '\n';
-						system("PAUSE()");
-						break;
-			
-					default:
-						std::cout << "Seleccion no valida, REINTENTELO!!";
-						system("PAUSE()");
-						break;
+						
 			}
-				break;	
 		}
     	
     	system("CLS");
@@ -234,6 +224,7 @@ int main()															//CUERPO PRINCIPAL DEL PROGRAMA
     	std::cin >> respuesta;
     	system("cls");
 	}
-    											
+    					
+	std::cout << ("*- Gracias por su visita, vuelva pronto -* \n");					
     system("PAUSE()");
 }
